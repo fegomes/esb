@@ -40,7 +40,7 @@ namespace core {
 			keywords::target = _target, // "C:/"
 			keywords::rotation_size = _rotation_size, // 1000000 * 1024 + 1024,
 			keywords::time_based_rotation = sinks::file::rotation_at_time_point(0, 0, 0),
-			keywords::format = _format // "[%TimeStamp%][%Scope%][%Message%]"
+			keywords::format = _format // "[%TimeStamp%][%Scope%][%Message%]",
 		);
 
 		logging::core::get()->set_filter(

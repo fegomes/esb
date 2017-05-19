@@ -24,21 +24,17 @@ int init() {
 
 int main(int argc, char* argv[])
 {
-	BOOST_LOG_NAMED_SCOPE(__FUNCTION__);
-
 	if (!init()) {
 		return 1;
 	}
-	
-	BOOST_LOG_TRIVIAL(debug) << "Begin";
 
-	for (int i = 0; i < 100; i++) {
-		BOOST_LOG_TRIVIAL(debug) << "NewLine" << i;
-	}
+	BOOST_LOG_SCOPE(__FUNCTION__);
 
 
 
-	BOOST_LOG_TRIVIAL(debug) << "End";
+
+
+
 	return 0;
 }
 

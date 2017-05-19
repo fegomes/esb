@@ -18,6 +18,9 @@
 
 using namespace boost::log::trivial;
 
+#define BOOST_LOG_SCOPE(x) BOOST_LOG_NAMED_SCOPE(x); \
+							core::scope s;
+
 namespace core {
 
 	class log : public std::ostringstream {
@@ -31,7 +34,7 @@ namespace core {
 		public:
 			static log& get();
 			static void release();
-			void init(const std::string& process, const std::string& file_name) throw(std::exception);
+			void init(const std::string& process, const std::string& file_name);
 
 		private:
 			void add_common_attributes();
@@ -43,5 +46,15 @@ namespace core {
 			long           _rotation_size;
 			std::string    _format;
 			severity_level _level;
+	};
+
+	class scope{
+	public:
+		scope() {
+			BOOST_LOG_TRIVIAL(debug) << "Begin";
+		}
+		~scope() {
+			BOOST_LOG_TRIVIAL(debug) << "End";
+		}
 	};
 }
