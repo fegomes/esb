@@ -1,7 +1,6 @@
 #pragma once
 
 // std
-#include <ostream>
 #include <string>
 
 // boost
@@ -32,10 +31,17 @@ namespace core {
 		public:
 			static log& get();
 			static void release();
-			void init(const std::string& process, severity_level level) const;
+			void init(const std::string& process, const std::string& file_name) throw(std::exception);
 
 		private:
-			void add_common_attributes() const;
+			void add_common_attributes();
+			void log::load(const std::string& process, const std::string& ini);
 
+		private:
+			std::string    _file_name;
+			std::string    _target;
+			long           _rotation_size;
+			std::string    _format;
+			severity_level _level;
 	};
 }

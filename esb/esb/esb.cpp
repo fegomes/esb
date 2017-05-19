@@ -13,7 +13,12 @@ BOOST_LOG_TRIVIAL(error) << "An error severity message";
 BOOST_LOG_TRIVIAL(fatal) << "A fatal severity message";
 */
 int init() {
-	core::log::get().init("esb", trace);
+	try {
+		core::log::get().init("esb", "log.ini");
+	}
+	catch (...) {
+		return false;
+	}
 	return true;
 }
 
@@ -26,6 +31,10 @@ int main(int argc, char* argv[])
 	}
 	
 	BOOST_LOG_TRIVIAL(debug) << "Begin";
+
+	for (int i = 0; i < 100; i++) {
+		BOOST_LOG_TRIVIAL(debug) << "NewLine" << i;
+	}
 
 
 
