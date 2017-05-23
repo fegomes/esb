@@ -70,8 +70,10 @@ namespace core {
 	{
 		boost::property_tree::ptree pt;
 		boost::property_tree::ini_parser::read_ini(ini, pt);
+
 		_file_name = pt.get<std::string>("Log.Filename");
 		_file_name.replace(_file_name.find("%P"), 2, process);
+
 		_target = pt.get<std::string>("Log.Target");
 		_rotation_size = pt.get<long>("Log.RotationSize");
 		_format = pt.get<std::string>("Log.Format");

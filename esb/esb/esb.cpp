@@ -2,7 +2,14 @@
 //
 
 #include "stdafx.h"
+
+#include <thread>
+
+#include <boost/dll/import.hpp>
+#include <boost/filesystem.hpp>
+
 #include "log.h"
+#include "plugin/receiver.h"
 
 /*
 BOOST_LOG_TRIVIAL(trace) << "A trace severity message";
@@ -30,7 +37,18 @@ int main(int argc, char* argv[])
 
 	BOOST_LOG_SCOPE(__FUNCTION__);
 
+	boost::filesystem::path lib_path("C:\\Users\\fernando\\Source\\Repos\\esb\\esb\\Debug"); 
+	boost::shared_ptr<receiver> plugin;           
+	std::cout << "Loading the plugin" << std::endl;
 
+	plugin = boost::dll::import<receiver>(  lib_path / "http",                    
+											"plugin",                                   
+											boost::dll::load_mode::append_decorations
+											);
+
+	plugin->init();
+
+	//plugin.recv();
 
 
 
