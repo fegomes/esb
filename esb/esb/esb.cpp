@@ -48,7 +48,6 @@ int main(int argc, char* argv[])
 
 	plugin->init();
 
-	//plugin.recv();
 
 
 
