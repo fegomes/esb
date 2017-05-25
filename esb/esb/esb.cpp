@@ -7,6 +7,7 @@
 
 #include <boost/dll/import.hpp>
 #include <boost/filesystem.hpp>
+#include <boost/bind.hpp>
 
 #include "log.h"
 #include "plugin/receiver.h"
@@ -29,6 +30,12 @@ int init() {
 	return true;
 }
 
+boost::shared_ptr<receiver> plugin1;
+
+void listen() {
+	plugin1->init();
+}
+
 int main(int argc, char* argv[])
 {
 	if (!init()) {
@@ -38,15 +45,26 @@ int main(int argc, char* argv[])
 	BOOST_LOG_SCOPE(__FUNCTION__);
 
 	boost::filesystem::path lib_path("C:\\Users\\fernando\\Source\\Repos\\esb\\esb\\Debug"); 
-	boost::shared_ptr<receiver> plugin;           
+	           
 	std::cout << "Loading the plugin" << std::endl;
 
-	plugin = boost::dll::import<receiver>(  lib_path / "http",                    
+	plugin1 = boost::dll::import<receiver>(  lib_path / "http",                    
 											"plugin",                                   
 											boost::dll::load_mode::append_decorations
 											);
 
-	plugin->init();
+	std::vector<std::shared_ptr<std::thread> > threads;
+	for (std::size_t i = 0; i < 1; ++i)
+	{
+		std::shared_ptr<std::thread> thread(new std::thread(listen));
+		threads.push_back(thread);
+	}
+
+	// Wait for all threads in the pool to exit.
+	for (std::size_t i = 0; i < threads.size(); ++i) {
+		threads[i]->join();
+	}
+	
 
 
 

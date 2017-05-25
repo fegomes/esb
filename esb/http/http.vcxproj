@@ -147,11 +147,24 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="connection.hpp" />
+    <ClInclude Include="header.hpp" />
+    <ClInclude Include="mime_types.hpp" />
+    <ClInclude Include="reply.hpp" />
+    <ClInclude Include="request.hpp" />
+    <ClInclude Include="request_handler.hpp" />
+    <ClInclude Include="request_parser.hpp" />
+    <ClInclude Include="server.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="connection.cpp" />
     <ClCompile Include="http.cpp" />
+    <ClCompile Include="mime_types.cpp" />
+    <ClCompile Include="reply.cpp" />
+    <ClCompile Include="request_handler.cpp" />
+    <ClCompile Include="request_parser.cpp" />
+    <ClCompile Include="server.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
