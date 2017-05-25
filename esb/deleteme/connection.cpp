@@ -38,6 +38,7 @@ namespace http {
 					boost::bind(&connection::handle_read, shared_from_this(),
 						boost::asio::placeholders::error,
 						boost::asio::placeholders::bytes_transferred)));
+
 		}
 
 		void connection::handle_read(const boost::system::error_code& e,
@@ -48,6 +49,9 @@ namespace http {
 				boost::tribool result;
 				boost::tie(result, boost::tuples::ignore) = request_parser_.parse(
 					request_, buffer_.data(), buffer_.data() + bytes_transferred);
+
+				std::string buffer(buffer_.data());
+				request_.body = buffer.substr(buffer.find_first_of("\r\n\r\n") + 4, buffer.size());
 
 				if (result)
 				{

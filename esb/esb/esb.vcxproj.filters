@@ -27,10 +27,13 @@
     <ClInclude Include="plugin\receiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="plugin\request.h">
+    <ClInclude Include="plugin\publisher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="plugin\publisher.h">
+    <ClInclude Include="plugin\requester.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

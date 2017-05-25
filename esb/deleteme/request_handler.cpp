@@ -19,6 +19,8 @@
 #include "reply.hpp"
 #include "request.hpp"
 
+#include <iostream>
+
 namespace http {
 	namespace server {
 
@@ -31,6 +33,7 @@ namespace http {
 		{
 			// Decode url to path.
 			std::string request_path;
+			
 			if (!url_decode(req.uri, request_path))
 			{
 				rep = reply::stock_reply(reply::bad_request);

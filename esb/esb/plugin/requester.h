@@ -1,8 +1,9 @@
 #pragma once
 #include <boost/any.hpp>
 
-class requester {
+#include "plugin.h"
+
+class requester : public plugin {
 public:
-	virtual void init() = 0;
 	virtual void request(boost::any input, size_t input_len, boost::any output, size_t output_len) = 0;
 };

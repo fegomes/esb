@@ -122,6 +122,11 @@ namespace comm {
 			std::cout << "recv" << std::endl;
 		}
 
+		void end() {
+
+		}
+
+
 		~http() {
 			std::cout << "Destructing http" << std::endl;
 		}
