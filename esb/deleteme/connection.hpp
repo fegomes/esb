@@ -22,7 +22,7 @@
 #include "request_parser.hpp"
 
 namespace http {
-	namespace server3 {
+	namespace server {
 
 		/// Represents a single connection from a client.
 		class connection

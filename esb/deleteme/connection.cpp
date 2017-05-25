@@ -16,7 +16,7 @@
 #include "request_handler.hpp"
 
 namespace http {
-	namespace server3 {
+	namespace server {
 
 		connection::connection(boost::asio::io_service& io_service,
 			request_handler& handler)

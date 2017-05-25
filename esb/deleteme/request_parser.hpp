@@ -15,7 +15,7 @@
 #include <boost/tuple/tuple.hpp>
 
 namespace http {
-	namespace server3 {
+	namespace server {
 
 		struct request;
 

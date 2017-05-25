@@ -14,7 +14,7 @@
 #include <string>
 
 namespace http {
-	namespace server3 {
+	namespace server {
 		namespace mime_types {
 
 			/// Convert a file extension into a MIME type.

@@ -17,7 +17,7 @@
 #include "header.hpp"
 
 namespace http {
-	namespace server3 {
+	namespace server {
 
 		/// A reply to be sent to a client.
 		struct reply

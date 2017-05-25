@@ -15,7 +15,7 @@
 #include <boost/lexical_cast.hpp>
 
 namespace http {
-	namespace server3 {
+	namespace server {
 
 		namespace status_strings {
 
@@ -121,7 +121,11 @@ namespace http {
 
 		namespace stock_replies {
 
-			const char ok[] = "";
+			const char ok[] = 
+				"<html>"
+				"<head><title>OK</title></head>"
+				"<body><h1>200 OK</h1></body>"
+				"</html>";
 			const char created[] =
 				"<html>"
 				"<head><title>Created</title></head>"
