@@ -18,6 +18,8 @@
 namespace http {
 	namespace server {
 
+		boost::signals2::signal< void( request ) > connection::request_sig_;
+
 		connection::connection(boost::asio::io_service& io_service,
 			request_handler& handler)
 			: strand_(io_service),
@@ -25,6 +27,8 @@ namespace http {
 			request_handler_(handler)
 		{
 		}
+
+		
 
 		boost::asio::ip::tcp::socket& connection::socket()
 		{
@@ -77,6 +81,8 @@ namespace http {
 								boost::asio::placeholders::error,
 								boost::asio::placeholders::bytes_transferred)));
 				}
+
+				request_sig_(request_);
 			}
 
 			// If an error occurs then no new asynchronous operations are started. This

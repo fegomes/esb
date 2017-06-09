@@ -4,11 +4,14 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include <queue>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 #include <boost/config.hpp> 
 #include <plugin/receiver.h>
 #include "server.hpp"
+#include "request.hpp"
+#include "connection.hpp"
 
 namespace comm {
 
@@ -17,6 +20,7 @@ namespace comm {
 	public:
 		tcp() {
 			std::cout << "Constructing http" << std::endl;
+			http::server::connection::request_sig_.connect(boost::bind(&tcp::get, this, _1));
 		}
 
 		void init() {
@@ -36,8 +40,17 @@ namespace comm {
 
 		}
 
-		void receive(boost::any output, size_t len) {
-			std::cout << "recv" << std::endl;
+		void get(http::server::request request) {
+			_requests.push(request);
+		}
+
+		void receive(boost::any& output, size_t& len) {
+			if (_requests.empty()) {
+				return;
+			}
+			output =  _requests.front().body;
+			len = _requests.front().body.size();
+			_requests.pop();
 		}
 
 		void end() {
@@ -48,6 +61,9 @@ namespace comm {
 		~tcp() {
 			std::cout << "Destructing http" << std::endl;
 		}
+
+	private:
+		std::queue<http::server::request> _requests;
 	};
 
 	extern "C" BOOST_SYMBOL_EXPORT tcp plugin;

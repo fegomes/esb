@@ -16,6 +16,8 @@
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
+#include <boost/signals2.hpp>
+
 #include "reply.hpp"
 #include "request.hpp"
 #include "request_handler.hpp"
@@ -47,6 +49,10 @@ namespace http {
 
 			/// Handle completion of a write operation.
 			void handle_write(const boost::system::error_code& e);
+			
+			void request_sig(request_parser request) {
+				return;
+			}
 
 			/// Strand to ensure the connection's handlers are not called concurrently.
 			boost::asio::io_service::strand strand_;
@@ -68,6 +74,10 @@ namespace http {
 
 			/// The reply to be sent back to the client.
 			reply reply_;
+
+		public:
+			// signal for request
+			static boost::signals2::signal< void ( request ) > request_sig_;
 		};
 
 		typedef boost::shared_ptr<connection> connection_ptr;

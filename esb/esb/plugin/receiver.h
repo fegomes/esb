@@ -5,5 +5,5 @@
 
 class receiver : public plugin {
 public:
-	virtual void receive(boost::any output, size_t len) = 0;
+	virtual void receive(boost::any& output, size_t& len) = 0;
 };

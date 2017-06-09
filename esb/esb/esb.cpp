@@ -36,6 +36,17 @@ void listen() {
 	plugin1->init();
 }
 
+void receive() {
+	while (true) {
+		boost::any output;
+		size_t len = 0;
+		plugin1->receive(output, len);
+		if (len > 0) {
+			std::cout << boost::any_cast<std::string>(output) << std::endl;
+		}
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	if (!init()) {
@@ -54,11 +65,16 @@ int main(int argc, char* argv[])
 											);
 
 	std::vector<std::shared_ptr<std::thread> > threads;
-	for (std::size_t i = 0; i < 1; ++i)
+
 	{
 		std::shared_ptr<std::thread> thread(new std::thread(listen));
 		threads.push_back(thread);
 	}
+	{
+		std::shared_ptr<std::thread> thread(new std::thread(receive));
+		threads.push_back(thread);
+	}
+	
 
 	// Wait for all threads in the pool to exit.
 	for (std::size_t i = 0; i < threads.size(); ++i) {
