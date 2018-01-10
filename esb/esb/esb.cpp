@@ -4,10 +4,12 @@
 #include "stdafx.h"
 
 #include <thread>
+#include <memory>
 
 #include <boost/dll/import.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/bind.hpp>
+
 
 #include "log.h"
 #include "plugin/receiver.h"
@@ -20,9 +22,13 @@ BOOST_LOG_TRIVIAL(warning) << "A warning severity message";
 BOOST_LOG_TRIVIAL(error) << "An error severity message";
 BOOST_LOG_TRIVIAL(fatal) << "A fatal severity message";
 */
+
+#include "ini.h"
+
 int init() {
 	try {
 		core::log::get().init("esb", "log.ini");
+		esb::ini::get().init("esb.ini");
 	}
 	catch (...) {
 		return false;
@@ -30,17 +36,13 @@ int init() {
 	return true;
 }
 
-boost::shared_ptr<receiver> plugin1;
+std::vector<boost::shared_ptr<receiver>> receivers;
 
-void listen() {
-	plugin1->init();
-}
-
-void receive() {
+void receive(receiver& rec) {
 	while (true) {
 		boost::any output;
 		size_t len = 0;
-		plugin1->receive(output, len);
+		rec.receive(output, len);
 		if (len > 0) {
 			std::cout << boost::any_cast<std::string>(output) << std::endl;
 		}
@@ -55,23 +57,27 @@ int main(int argc, char* argv[])
 
 	BOOST_LOG_SCOPE(__FUNCTION__);
 
-	boost::filesystem::path lib_path("C:\\Users\\fernando\\Source\\Repos\\esb\\esb\\Debug"); 
+	auto protocols = esb::ini::get().get_protocols();
+
+	for (auto ci = protocols.begin(); ci != protocols.end(); ci++) {
+		boost::filesystem::path lib_path(ci->second._path);
+		receivers.push_back(boost::dll::import<receiver>(lib_path / (ci->second._file),
+			"plugin",
+			boost::dll::load_mode::append_decorations
+			));
+	}
 	           
 	std::cout << "Loading the plugin" << std::endl;
 
-	plugin1 = boost::dll::import<receiver>(  lib_path / "http",                    
-											"plugin",                                   
-											boost::dll::load_mode::append_decorations
-											);
-
 	std::vector<std::shared_ptr<std::thread> > threads;
 
-	{
-		std::shared_ptr<std::thread> thread(new std::thread(listen));
+	for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
+		std::shared_ptr<std::thread> thread(new std::thread([&ci]() { ci->get()->init(); }));
 		threads.push_back(thread);
 	}
-	{
-		std::shared_ptr<std::thread> thread(new std::thread(receive));
+	
+	for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
+		std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  receive(*ci->get()); }));
 		threads.push_back(thread);
 	}
 	
