@@ -21,16 +21,18 @@ namespace comm {
 		tcp() {
 			std::cout << "Constructing http" << std::endl;
 			http::server::connection::request_sig_.connect(boost::bind(&tcp::get, this, _1));
+			_port = 1789;
+			_threads = 1;
+		}
+		
+		void load(const std::string& filename) override {
+
 		}
 
-		void init() {
-			std::cout << "init" << std::endl;
-
+		void init() override {
 			try
 			{
-				unsigned short port = 1234;
-				std::size_t num_threads = 1;
-				http::server::server s(port, num_threads);
+				http::server::server s(_port, _threads);
 				s.run();
 			}
 			catch (std::exception& e)
@@ -53,7 +55,7 @@ namespace comm {
 			_requests.pop();
 		}
 
-		void end() {
+		void end() override {
 
 		}
 
@@ -64,6 +66,9 @@ namespace comm {
 
 	private:
 		std::queue<http::server::request> _requests;
+		std::string _filename;
+		unsigned int _port;
+		unsigned int _threads;
 	};
 
 	extern "C" BOOST_SYMBOL_EXPORT tcp plugin;

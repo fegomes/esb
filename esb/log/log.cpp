@@ -52,6 +52,7 @@ namespace core {
 			keywords::format = _format // "[%TimeStamp%][%Scope%][%Message%]",
 		);
 
+
 		logging::core::get()->set_filter(
 			logging::trivial::severity >= _level
 		);

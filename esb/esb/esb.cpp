@@ -39,12 +39,14 @@ int init() {
 std::vector<boost::shared_ptr<receiver>> receivers;
 
 void receive(receiver& rec) {
+	BOOST_LOG_SCOPE(__FUNCTION__);
 	while (true) {
 		boost::any output;
 		size_t len = 0;
 		rec.receive(output, len);
 		if (len > 0) {
-			std::cout << boost::any_cast<std::string>(output) << std::endl;
+			BOOST_LOG_TRIVIAL(trace) << "Receive Message";
+			BOOST_LOG_TRIVIAL(debug) << boost::any_cast<std::string>(output);
 		}
 	}
 }
@@ -67,7 +69,7 @@ int main(int argc, char* argv[])
 			));
 	}
 	           
-	std::cout << "Loading the plugin" << std::endl;
+	BOOST_LOG_TRIVIAL(debug) << "Loading the plugins";
 
 	std::vector<std::shared_ptr<std::thread> > threads;
 
