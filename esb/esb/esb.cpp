@@ -5,6 +5,7 @@
 
 #include <thread>
 #include <memory>
+#include <chrono>
 
 #include <boost/dll/import.hpp>
 #include <boost/filesystem.hpp>
@@ -38,16 +39,20 @@ int init() {
 
 std::vector<boost::shared_ptr<receiver>> receivers;
 
-void receive(receiver& rec) {
+template< typename Rep, typename Period>
+inline void receive(receiver& rec, std::chrono::duration<Rep,Period> &d) {
 	BOOST_LOG_SCOPE(__FUNCTION__);
+	boost::any output;
+	size_t len = 0;
 	while (true) {
-		boost::any output;
-		size_t len = 0;
+		output.clear();
+		len = 0;
 		rec.receive(output, len);
 		if (len > 0) {
 			BOOST_LOG_TRIVIAL(trace) << "Receive Message";
 			BOOST_LOG_TRIVIAL(debug) << boost::any_cast<std::string>(output);
 		}
+		std::this_thread::sleep_for(d);
 	}
 }
 
@@ -59,19 +64,23 @@ int main(int argc, char* argv[])
 
 	BOOST_LOG_SCOPE(__FUNCTION__);
 
-	auto protocols = esb::ini::get().get_protocols();
+	auto protocols = esb::ini::get().get_listeners();
 
 	for (auto ci = protocols.begin(); ci != protocols.end(); ci++) {
 		boost::filesystem::path lib_path(ci->second._path);
-		receivers.push_back(boost::dll::import<receiver>(lib_path / (ci->second._file),
+		boost::shared_ptr<receiver> rec = boost::dll::import<receiver>(ci->second._fullpath_lib,
 			"plugin",
 			boost::dll::load_mode::append_decorations
-			));
+			);
+		rec->load(ci->second._fullpath_ini);
+		receivers.push_back(rec);
 	}
 	           
 	BOOST_LOG_TRIVIAL(debug) << "Loading the plugins";
 
 	std::vector<std::shared_ptr<std::thread> > threads;
+
+
 
 	for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
 		std::shared_ptr<std::thread> thread(new std::thread([&ci]() { ci->get()->init(); }));
@@ -79,7 +88,7 @@ int main(int argc, char* argv[])
 	}
 	
 	for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
-		std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  receive(*ci->get()); }));
+		std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  receive(*ci->get(), std::chrono::milliseconds(500)); }));
 		threads.push_back(thread);
 	}
 	

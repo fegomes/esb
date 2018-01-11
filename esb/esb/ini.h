@@ -7,9 +7,12 @@
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/algorithm/string.hpp>
 
-struct protocol {
-	std::string _file;
+struct listener {
+	std::string _ini;
+	std::string _lib;
 	std::string _path;
+	std::string _fullpath_ini;
+	std::string _fullpath_lib;
 };
 
 namespace esb {
@@ -23,7 +26,7 @@ namespace esb {
 		static ini* _instance;
 
 	public:
-		typedef std::unordered_map<std::string, protocol> protocols_map;
+		typedef std::unordered_map<std::string, listener> listeners_map;
 
 		static ini& get() {
 			if (!_instance) {
@@ -44,25 +47,29 @@ namespace esb {
 			boost::property_tree::ptree pt;
 			boost::property_tree::ini_parser::read_ini(filename, pt);
 
-			std::string protocols = pt.get<std::string>("General.Protocols");
-			std::vector<std::string> v_protocols;
-			boost::split(v_protocols, protocols, boost::is_any_of(","));
+			std::string listeners = pt.get<std::string>("General.listeners");
+			std::vector<std::string> v_listeners;
+			boost::split(v_listeners, listeners, boost::is_any_of(","));
 
-			for (auto ci = v_protocols.begin(); ci != v_protocols.end(); ci++) {
-				protocol p;
-				p._file = pt.get<std::string>(*ci + ".file");
-				p._path = pt.get<std::string>(*ci + ".path");
-				_protocols[*ci] = std::move(p);
+			for (auto ci = v_listeners.begin(); ci != v_listeners.end(); ci++) {
+				listener l;
+				l._path = pt.get<std::string>(*ci + ".path");
+				l._ini = pt.get<std::string>(*ci + ".ini");
+				l._lib = pt.get<std::string>(*ci + ".lib");
+				l._fullpath_ini = l._path + '\\' + l._ini;
+				l._fullpath_lib = l._path + '\\' + l._lib;
+				_listeners[*ci] = std::move(l);
 			}
 		}
 
-		const protocols_map get_protocols() const {
-			return _protocols;
+		const listeners_map& get_listeners() const {
+			return _listeners;
 		}
+		
 
 	private:
-		protocols_map _protocols;
-		std::string _filename;
+		listeners_map _listeners;
+		std::string   _filename;
 	};
 
 	ini* ini::_instance = nullptr;
