@@ -8,11 +8,12 @@
 #include <boost/algorithm/string.hpp>
 
 struct listener {
-	std::string _ini;
-	std::string _lib;
-	std::string _path;
-	std::string _fullpath_ini;
-	std::string _fullpath_lib;
+	std::string  _ini;
+	std::string  _lib;
+	std::string  _path;
+	unsigned int _priority;
+	std::string  _fullpath_ini;
+	std::string  _fullpath_lib;
 };
 
 namespace esb {
@@ -56,6 +57,7 @@ namespace esb {
 				l._path = pt.get<std::string>(*ci + ".path");
 				l._ini = pt.get<std::string>(*ci + ".ini");
 				l._lib = pt.get<std::string>(*ci + ".lib");
+				l._priority = pt.get<unsigned int>(*ci + ".priority");
 				l._fullpath_ini = l._path + '\\' + l._ini;
 				l._fullpath_lib = l._path + '\\' + l._lib;
 				_listeners[*ci] = std::move(l);

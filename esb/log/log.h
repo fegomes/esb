@@ -51,10 +51,10 @@ namespace core {
 	class scope{
 	public:
 		scope() {
-			BOOST_LOG_TRIVIAL(debug) << "Begin";
+			//BOOST_LOG_TRIVIAL(debug) << "Begin";
 		}
 		~scope() {
-			BOOST_LOG_TRIVIAL(debug) << "End";
+			//BOOST_LOG_TRIVIAL(debug) << "End";
 		}
 	};
 }

@@ -41,7 +41,7 @@ namespace http {
 			boost::asio::ip::tcp::endpoint endpoint{ boost::asio::ip::tcp::v4(), port };
 			acceptor_.open(endpoint.protocol());
 			acceptor_.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
-			acceptor_.bind(endpoint);
+			acceptor_.bind(std::move(endpoint));
 			acceptor_.listen();
 
 			start_accept();
@@ -55,12 +55,13 @@ namespace http {
 			{
 				boost::shared_ptr<boost::thread> thread(new boost::thread(
 					boost::bind(&boost::asio::io_service::run, &io_service_)));
-				threads.push_back(thread);
+				threads.push_back(std::move(thread));
 			}
 
 			// Wait for all threads in the pool to exit.
-			for (std::size_t i = 0; i < threads.size(); ++i)
+			for (std::size_t i = 0; i < threads.size(); ++i) {
 				threads[i]->join();
+			}
 		}
 
 		void server::start_accept()

@@ -52,7 +52,7 @@ namespace http {
 			const std::string service_unavailable =
 				"HTTP/1.0 503 Service Unavailable\r\n";
 
-			boost::asio::const_buffer to_buffer(reply::status_type status)
+			boost::asio::const_buffer to_buffer(const reply::status_type& status)
 			{
 				switch (status)
 				{
@@ -116,7 +116,7 @@ namespace http {
 			}
 			buffers.push_back(boost::asio::buffer(misc_strings::crlf));
 			buffers.push_back(boost::asio::buffer(content));
-			return buffers;
+			return std::move(buffers);
 		}
 
 		namespace stock_replies {
@@ -202,7 +202,7 @@ namespace http {
 				"<body><h1>503 Service Unavailable</h1></body>"
 				"</html>";
 
-			std::string to_string(reply::status_type status)
+			std::string to_string(const reply::status_type& status)
 			{
 				switch (status)
 				{
@@ -245,7 +245,7 @@ namespace http {
 
 		} // namespace stock_replies
 
-		reply reply::stock_reply(reply::status_type status)
+		reply reply::stock_reply(const reply::status_type& status)
 		{
 			reply rep;
 			rep.status = status;
@@ -255,7 +255,7 @@ namespace http {
 			rep.headers[0].value = boost::lexical_cast<std::string>(rep.content.size());
 			rep.headers[1].name = "Content-Type";
 			rep.headers[1].value = "text/html";
-			return rep;
+			return std::move(rep);
 		}
 
 	} // namespace server3

@@ -52,11 +52,10 @@ namespace core {
 			keywords::format = _format // "[%TimeStamp%][%Scope%][%Message%]",
 		);
 
-
 		logging::core::get()->set_filter(
 			logging::trivial::severity >= _level
 		);
-		
+
 		add_common_attributes();
 	}
 
@@ -72,13 +71,13 @@ namespace core {
 		boost::property_tree::ptree pt;
 		boost::property_tree::ini_parser::read_ini(ini, pt);
 
-		_file_name = pt.get<std::string>("Log.Filename");
+		_file_name = pt.get<std::string>("General.Filename");
 		_file_name.replace(_file_name.find("%P"), 2, process);
 
-		_target = pt.get<std::string>("Log.Target");
-		_rotation_size = pt.get<long>("Log.RotationSize");
-		_format = pt.get<std::string>("Log.Format");
-		_level = pt.get<severity_level>("Log.Level");
+		_target = pt.get<std::string>("General.Target");
+		_rotation_size = pt.get<long>("General.RotationSize");
+		_format = pt.get<std::string>("General.Format");
+		_level = pt.get<severity_level>("General.Level");
 	}
 
 }
