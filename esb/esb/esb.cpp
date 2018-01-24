@@ -28,14 +28,6 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	BOOST_LOG_SCOPE(__FUNCTION__);
-	BOOST_LOG_TRIVIAL(trace) << "A trace severity message";
-	BOOST_LOG_TRIVIAL(debug) << "A debug severity message";
-	BOOST_LOG_TRIVIAL(info) << "An informational severity message";
-	BOOST_LOG_TRIVIAL(warning) << "A warning severity message";
-	BOOST_LOG_TRIVIAL(error) << "An error severity message";
-	BOOST_LOG_TRIVIAL(fatal) << "A fatal severity message";
-
 	std::vector<std::shared_ptr<std::thread> > threads;
 	std::vector<boost::shared_ptr<receiver>> receivers;
 	auto protocols = esb::ini::get().get_listeners();
@@ -51,8 +43,6 @@ int main(int argc, char* argv[])
 		receivers.push_back(std::move(recv));
 	}
 	    
-	
-	BOOST_LOG_TRIVIAL(debug) << "Loading the plugins";
 
 	for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
 		std::shared_ptr<std::thread> thread(new std::thread([&ci]() { ci->get()->init(); }));
@@ -84,7 +74,6 @@ int init() {
 
 template< typename Rep, typename Period>
 inline void receive(receiver& rec, std::chrono::duration<Rep, Period> &d) {
-	//BOOST_LOG_SCOPE(__FUNCTION__);
 	boost::any output;
 	size_t len = 0;
 	while (true) {
@@ -98,12 +87,3 @@ inline void receive(receiver& rec, std::chrono::duration<Rep, Period> &d) {
 		std::this_thread::sleep_for(d);
 	}
 }
-
-/*
-BOOST_LOG_TRIVIAL(trace) << "A trace severity message";
-BOOST_LOG_TRIVIAL(debug) << "A debug severity message";
-BOOST_LOG_TRIVIAL(info) << "An informational severity message";
-BOOST_LOG_TRIVIAL(warning) << "A warning severity message";
-BOOST_LOG_TRIVIAL(error) << "An error severity message";
-BOOST_LOG_TRIVIAL(fatal) << "A fatal severity message";
-*/

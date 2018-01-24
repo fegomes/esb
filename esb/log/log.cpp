@@ -1,13 +1,10 @@
 #include "stdafx.h"
 #include "log.h"
 
+#include <mutex>
+
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
-
-namespace logging = boost::log;
-namespace keywords = boost::log::keywords;
-namespace sinks = boost::log::sinks;
-namespace sources = boost::log::sources;
 
 namespace core {
 
@@ -43,27 +40,10 @@ namespace core {
 	void log::init(const std::string& process, const std::string& ini){
 
 		load(process, ini);
+		_logger = spdlog::rotating_logger_st(process, _target + _file_name, _rotation_size, 100);
+		_logger->set_level(_level);
+		_logger->set_pattern(_format);
 
-		logging::add_file_log(
-			keywords::file_name = _file_name, // "log_" + process + "_%Y-%m-%d-%H-%M-%S_%N.log",
-			keywords::target = _target, // "log"
-			keywords::rotation_size = _rotation_size, // 1000000 * 1024 + 1024,
-			keywords::time_based_rotation = sinks::file::rotation_at_time_point(0, 0, 0),
-			keywords::format = _format // "[%TimeStamp%][%Scope%][%Message%]",
-		);
-
-		logging::core::get()->set_filter(
-			logging::trivial::severity >= _level
-		);
-
-		add_common_attributes();
-	}
-
-	void log::add_common_attributes()
-	{
-		logging::add_common_attributes();
-		auto core = logging::core::get();
-		core->add_global_attribute("Scope", logging::attributes::named_scope());
 	}
 
 	void log::load(const std::string& process, const std::string& ini)
@@ -77,7 +57,9 @@ namespace core {
 		_target = pt.get<std::string>("General.Target");
 		_rotation_size = pt.get<long>("General.RotationSize");
 		_format = pt.get<std::string>("General.Format");
-		_level = pt.get<severity_level>("General.Level");
+		_level = spdlog::level::to_level_enum(pt.get<std::string>("General.Level").c_str());
+
 	}
+
 
 }

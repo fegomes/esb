@@ -1,60 +1,101 @@
 #pragma once
 
-// std
 #include <string>
-
-// boost
-#include <boost/log/core.hpp>
-#include <boost/log/trivial.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/sinks/text_file_backend.hpp>
-#include <boost/log/utility/setup/file.hpp>
-#include <boost/log/utility/setup/common_attributes.hpp>
-#include <boost/log/sources/severity_logger.hpp>
-#include <boost/log/sources/record_ostream.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/date_time/posix_time/posix_time_io.hpp>
-#include <boost/log/utility/string_literal.hpp>
-
-using namespace boost::log::trivial;
-
-#define BOOST_LOG_SCOPE(x) BOOST_LOG_NAMED_SCOPE(x); \
-							core::scope s;
+#include <spdlog/spdlog.h>
 
 namespace core {
 
-	class log : public std::ostringstream {
-		private:
-			log();
-			virtual ~log();
+	class log {
+	private:
+		log();
+		virtual ~log();
 
-		private:
-			static log* _instance;
+	private:
+		static log* _instance;
 
-		public:
-			static log& get();
-			static void release();
-			void init(const std::string& process, const std::string& file_name);
-
-		private:
-			void add_common_attributes();
-			void log::load(const std::string& process, const std::string& ini);
-
-		private:
-			std::string    _file_name;
-			std::string    _target;
-			long           _rotation_size;
-			std::string    _format;
-			severity_level _level;
-	};
-
-	class scope{
 	public:
-		scope() {
-			//BOOST_LOG_TRIVIAL(debug) << "Begin";
+		static log& get();
+		static void release();
+		void init(const std::string& process, const std::string& file_name);
+		spdlog::logger& logger() {
+			return *_logger.get();
 		}
-		~scope() {
-			//BOOST_LOG_TRIVIAL(debug) << "End";
+
+	private:
+		void log::load(const std::string& process, const std::string& ini);
+
+	private:
+		std::string                     _file_name;
+		std::string                     _target;
+		long                            _rotation_size;
+		std::string                     _format;
+		spdlog::level::level_enum       _level;
+		std::shared_ptr<spdlog::logger> _logger;
+
+	public:
+		template <typename T> 
+		static void trace(const T& v) {
+			core::log::get().logger().trace(v);
 		}
+		template <typename T> 
+		static void debug(const T& v) {
+			core::log::get().logger().debug(v);
+		}
+		template <typename T> 
+		static void info(const T& v) {
+			core::log::get().logger().info(v);
+		}
+		template <typename T> 
+		static void warn(const T& v) {
+			core::log::get().logger().warn(v);
+		}
+		template <typename T> 
+		static void error(const T& v) {
+			core::log::get().logger().error(v);
+		}
+		template <typename T> 
+		static void critical(const T& v) {
+			core::log::get().logger().critical(v);
+		}
+		template <typename Arg1, typename... Args> 
+		static void trace(const char* fmt, const Arg1& arg1, const Args&... args) {
+			core::log::get().logger().trace(fmt, arg1, args);
+		}
+		template <typename Arg1, typename... Args> 
+		static void debug(const char* fmt, const Arg1&, const Args&... args) {
+			core::log::get().logger().debug(fmt, arg1, args);
+		}
+		template <typename Arg1, typename... Args> 
+		static void info(const char* fmt, const Arg1&, const Args&... args) {
+			core::log::get().logger().info(fmt, arg1, args);
+		}
+		template <typename Arg1, typename... Args> 
+		static void warn(const char* fmt, const Arg1&, const Args&... args) {
+			core::log::get().logger().warm(fmt, arg1, args);
+		}
+		template <typename Arg1, typename... Args> 
+		static void error(const char* fmt, const Arg1&, const Args&... args) {
+			core::log::get().logger().error(fmt, arg1, args);
+		}
+		template <typename Arg1, typename... Args> 
+		static void critical(const char* fmt, const Arg1&, const Args&... args) {
+			core::log::get().logger().critical(fmt, arg1, args);
+		}
+
+		class score {
+		public:
+			score(const std::string& name) {
+				_name = name;
+				info("Begin[" + _name + "]");
+			}
+			~score() {
+				info("End[" + _name + "]");
+			}
+
+		private:
+			std::string _name;
+		};
 	};
+
 }
+
