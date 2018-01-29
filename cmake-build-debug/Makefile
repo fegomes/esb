@@ -112,44 +112,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named esb
+# Target rules for targets named listener
 
 # Build rule for target.
-esb: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) esb
-.PHONY : esb
+listener: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) listener
+.PHONY : listener
 
 # fast build rule for target.
-esb\fast:
-	$(MAKE) -f CMakeFiles\esb.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\esb.dir\build
-.PHONY : esb\fast
-
-main.obj: main.cpp.obj
-
-.PHONY : main.obj
-
-# target to build an object file
-main.cpp.obj:
-	$(MAKE) -f CMakeFiles\esb.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\esb.dir\main.cpp.obj
-.PHONY : main.cpp.obj
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles\esb.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\esb.dir\main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles\esb.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\esb.dir\main.cpp.s
-.PHONY : main.cpp.s
+listener\fast:
+	$(MAKE) -f listener\CMakeFiles\listener.dir\build.make /nologo -$(MAKEFLAGS) listener\CMakeFiles\listener.dir\build
+.PHONY : listener\fast
 
 # Help Target
 help:
@@ -157,12 +130,9 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... esb
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... listener
 .PHONY : help
 
 

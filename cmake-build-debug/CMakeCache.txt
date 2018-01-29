@@ -183,6 +183,12 @@ esb_BINARY_DIR:STATIC=C:/Users/fernando/Source/Repos/esb/cmake-build-debug
 //Value Computed by CMake
 esb_SOURCE_DIR:STATIC=C:/Users/fernando/Source/Repos/esb
 
+//Value Computed by CMake
+listener_BINARY_DIR:STATIC=C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener
+
+//Value Computed by CMake
+listener_SOURCE_DIR:STATIC=C:/Users/fernando/Source/Repos/esb/listener
+
 
 ########################
 # INTERNAL cache entries
@@ -274,7 +280,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RC_COMPILER
