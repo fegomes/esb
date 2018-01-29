@@ -3,5 +3,7 @@ project(esb)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_subdirectory(listener)
+
 add_subdirectory(log)
+add_subdirectory(http)
+add_subdirectory(listener)

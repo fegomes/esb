@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/fernando/Source/Repos/esb
+# Install script for directory: C:/Users/nando/Source/Repos/esb
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,8 +29,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener/cmake_install.cmake")
-  include("C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log/cmake_install.cmake")
+  include("C:/Users/nando/Source/Repos/esb/cmake-build-debug/log/cmake_install.cmake")
+  include("C:/Users/nando/Source/Repos/esb/cmake-build-debug/http/cmake_install.cmake")
+  include("C:/Users/nando/Source/Repos/esb/cmake-build-debug/listener/cmake_install.cmake")
 
 endif()
 
@@ -42,5 +43,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/fernando/Source/Repos/esb/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/nando/Source/Repos/esb/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

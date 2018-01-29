@@ -5,160 +5,257 @@
 		<Option title="esb"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="msvc8"/>
-		<Option virtualFolders="CMake Files\;CMake Files\listener\;CMake Files\log\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\log\;CMake Files\http\;CMake Files\listener\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 all"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="listener">
-				<Option output="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener/listener.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="C:/Users/fernando/Downloads/boost_1_62_0"/>
-					<Add directory="C:/Users/fernando/Source/Repos/spdlog/include"/>
-					<Add directory="C:/Users/fernando/Source/Repos/esb/log"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\winrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 listener"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="listener/fast">
-				<Option output="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener/listener.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="C:/Users/fernando/Downloads/boost_1_62_0"/>
-					<Add directory="C:/Users/fernando/Source/Repos/spdlog/include"/>
-					<Add directory="C:/Users/fernando/Source/Repos/esb/log"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\winrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 listener/fast"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="log">
-				<Option output="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log/log.lib" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log"/>
+				<Option output="C:/Users/nando/Source/Repos/esb/cmake-build-debug/log/log.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug/log"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="C:/Users/fernando/Downloads/boost_1_62_0"/>
-					<Add directory="C:/Users/fernando/Source/Repos/spdlog/include"/>
+					<Add directory="C:/Users/nando/Documents/boost_1_63_0"/>
+					<Add directory="C:/Users/nando/Source/Repos/spdlog/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 log"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 log"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="log/fast">
-				<Option output="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log/log.lib" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log"/>
+				<Option output="C:/Users/nando/Source/Repos/esb/cmake-build-debug/log/log.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug/log"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="C:/Users/fernando/Downloads/boost_1_62_0"/>
-					<Add directory="C:/Users/fernando/Source/Repos/spdlog/include"/>
+					<Add directory="C:/Users/nando/Documents/boost_1_63_0"/>
+					<Add directory="C:/Users/nando/Source/Repos/spdlog/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 log/fast"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 log/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http">
+				<Option output="C:/Users/nando/Source/Repos/esb/cmake-build-debug/http/http.dll" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug/http"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/nando/Documents/boost_1_63_0"/>
+					<Add directory="C:/Users/nando/Source/Repos/spdlog/include"/>
+					<Add directory="C:/Users/nando/Source/Repos/esb/log"/>
+					<Add directory="C:/Users/nando/Source/Repos/esb/listener"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\http\Makefile VERBOSE=1 http"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\http\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\http\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\http\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http/fast">
+				<Option output="C:/Users/nando/Source/Repos/esb/cmake-build-debug/http/http.dll" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug/http"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/nando/Documents/boost_1_63_0"/>
+					<Add directory="C:/Users/nando/Source/Repos/spdlog/include"/>
+					<Add directory="C:/Users/nando/Source/Repos/esb/log"/>
+					<Add directory="C:/Users/nando/Source/Repos/esb/listener"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\http\Makefile VERBOSE=1 http/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\http\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\http\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\http\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="listener">
+				<Option output="C:/Users/nando/Source/Repos/esb/cmake-build-debug/listener/listener.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug/listener"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/nando/Documents/boost_1_63_0"/>
+					<Add directory="C:/Users/nando/Source/Repos/spdlog/include"/>
+					<Add directory="C:/Users/nando/Source/Repos/esb/log"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 listener"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="listener/fast">
+				<Option output="C:/Users/nando/Source/Repos/esb/cmake-build-debug/listener/listener.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/nando/Source/Repos/esb/cmake-build-debug/listener"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/nando/Documents/boost_1_63_0"/>
+					<Add directory="C:/Users/nando/Source/Repos/spdlog/include"/>
+					<Add directory="C:/Users/nando/Source/Repos/esb/log"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 listener/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/fernando/Source/Repos/esb/listener/main.cpp">
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/connection.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/connection.hpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/http.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/mime_types.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/mime_types.hpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/reply.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/reply.hpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/request_handler.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/request_handler.hpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/request_parser.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/request_parser.hpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/server.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/server.hpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/listener/main.cpp">
 			<Option target="listener"/>
 		</Unit>
-		<Unit filename="C:/Users/fernando/Source/Repos/esb/log/log.cpp">
+		<Unit filename="C:/Users/nando/Source/Repos/esb/log/log.cpp">
 			<Option target="log"/>
 		</Unit>
-		<Unit filename="C:/Users/fernando/Source/Repos/esb/log/log.h">
+		<Unit filename="C:/Users/nando/Source/Repos/esb/log/log.h">
 			<Option target="log"/>
 		</Unit>
-		<Unit filename="C:/Users/fernando/Source/Repos/esb/CMakeLists.txt">
+		<Unit filename="C:/Users/nando/Source/Repos/esb/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="C:/Users/fernando/Source/Repos/esb/listener/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\listener\"/>
-		</Unit>
-		<Unit filename="C:/Users/fernando/Source/Repos/esb/listener/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\listener\"/>
-		</Unit>
-		<Unit filename="C:/Users/fernando/Source/Repos/esb/log/CMakeLists.txt">
+		<Unit filename="C:/Users/nando/Source/Repos/esb/log/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\log\"/>
 		</Unit>
-		<Unit filename="C:/Users/fernando/Source/Repos/esb/log/CMakeLists.txt">
+		<Unit filename="C:/Users/nando/Source/Repos/esb/log/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\log\"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\http\"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/http/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\http\"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/listener/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\listener\"/>
+		</Unit>
+		<Unit filename="C:/Users/nando/Source/Repos/esb/listener/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\listener\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
