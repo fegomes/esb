@@ -82,7 +82,7 @@ listener\preinstall:
 # Target rules for target listener/CMakeFiles/listener.dir
 
 # All Build rule for target.
-listener\CMakeFiles\listener.dir\all:
+listener\CMakeFiles\listener.dir\all: log\CMakeFiles\log.dir\all
 	$(MAKE) -f listener\CMakeFiles\listener.dir\build.make /nologo -$(MAKEFLAGS) listener\CMakeFiles\listener.dir\depend
 	$(MAKE) -f listener\CMakeFiles\listener.dir\build.make /nologo -$(MAKEFLAGS) listener\CMakeFiles\listener.dir\build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\fernando\Source\Repos\esb\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target listener"
@@ -95,7 +95,7 @@ all: listener\CMakeFiles\listener.dir\all
 
 # Build rule for subdir invocation for target.
 listener\CMakeFiles\listener.dir\rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fernando\Source\Repos\esb\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fernando\Source\Repos\esb\cmake-build-debug\CMakeFiles 4
 	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) listener\CMakeFiles\listener.dir\all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fernando\Source\Repos\esb\cmake-build-debug\CMakeFiles 0
 .PHONY : listener\CMakeFiles\listener.dir\rule
@@ -112,6 +112,61 @@ listener\CMakeFiles\listener.dir\clean:
 
 # clean rule for target.
 clean: listener\CMakeFiles\listener.dir\clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory log
+
+# Convenience name for "all" pass in the directory.
+log\all: log\CMakeFiles\log.dir\all
+
+.PHONY : log\all
+
+# Convenience name for "clean" pass in the directory.
+log\clean: log\CMakeFiles\log.dir\clean
+
+.PHONY : log\clean
+
+# Convenience name for "preinstall" pass in the directory.
+log\preinstall:
+
+.PHONY : log\preinstall
+
+#=============================================================================
+# Target rules for target log/CMakeFiles/log.dir
+
+# All Build rule for target.
+log\CMakeFiles\log.dir\all:
+	$(MAKE) -f log\CMakeFiles\log.dir\build.make /nologo -$(MAKEFLAGS) log\CMakeFiles\log.dir\depend
+	$(MAKE) -f log\CMakeFiles\log.dir\build.make /nologo -$(MAKEFLAGS) log\CMakeFiles\log.dir\build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\fernando\Source\Repos\esb\cmake-build-debug\CMakeFiles --progress-num=3,4 "Built target log"
+.PHONY : log\CMakeFiles\log.dir\all
+
+# Include target in all.
+all: log\CMakeFiles\log.dir\all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+log\CMakeFiles\log.dir\rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fernando\Source\Repos\esb\cmake-build-debug\CMakeFiles 2
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) log\CMakeFiles\log.dir\all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\fernando\Source\Repos\esb\cmake-build-debug\CMakeFiles 0
+.PHONY : log\CMakeFiles\log.dir\rule
+
+# Convenience name for target.
+log: log\CMakeFiles\log.dir\rule
+
+.PHONY : log
+
+# clean rule for target.
+log\CMakeFiles\log.dir\clean:
+	$(MAKE) -f log\CMakeFiles\log.dir\build.make /nologo -$(MAKEFLAGS) log\CMakeFiles\log.dir\clean
+.PHONY : log\CMakeFiles\log.dir\clean
+
+# clean rule for target.
+clean: log\CMakeFiles\log.dir\clean
 
 .PHONY : clean
 

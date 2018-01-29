@@ -124,6 +124,19 @@ listener\fast:
 	$(MAKE) -f listener\CMakeFiles\listener.dir\build.make /nologo -$(MAKEFLAGS) listener\CMakeFiles\listener.dir\build
 .PHONY : listener\fast
 
+#=============================================================================
+# Target rules for targets named log
+
+# Build rule for target.
+log: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) log
+.PHONY : log
+
+# fast build rule for target.
+log\fast:
+	$(MAKE) -f log\CMakeFiles\log.dir\build.make /nologo -$(MAKEFLAGS) log\CMakeFiles\log.dir\build
+.PHONY : log\fast
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -133,6 +146,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... listener
+	@echo ... log
 .PHONY : help
 
 

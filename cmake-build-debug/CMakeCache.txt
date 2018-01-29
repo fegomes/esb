@@ -112,6 +112,9 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=/INCREMENTAL:NO
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=/debug /INCREMENTAL
 
 //Value Computed by CMake
+CMAKE_PROJECT_DESCRIPTION:STATIC=listener for esb project
+
+//Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=esb
 
 //RC compiler
@@ -188,6 +191,15 @@ listener_BINARY_DIR:STATIC=C:/Users/fernando/Source/Repos/esb/cmake-build-debug/
 
 //Value Computed by CMake
 listener_SOURCE_DIR:STATIC=C:/Users/fernando/Source/Repos/esb/listener
+
+//Value Computed by CMake
+log_BINARY_DIR:STATIC=C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log
+
+//Dependencies for target
+log_LIB_DEPENDS:STATIC=
+
+//Value Computed by CMake
+log_SOURCE_DIR:STATIC=C:/Users/fernando/Source/Repos/esb/log
 
 
 ########################
@@ -280,7 +292,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RC_COMPILER

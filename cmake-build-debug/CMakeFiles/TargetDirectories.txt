@@ -3,3 +3,6 @@ C:/Users/fernando/Source/Repos/esb/cmake-build-debug/CMakeFiles/rebuild_cache.di
 C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener/CMakeFiles/listener.dir
 C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener/CMakeFiles/edit_cache.dir
 C:/Users/fernando/Source/Repos/esb/cmake-build-debug/listener/CMakeFiles/rebuild_cache.dir
+C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log/CMakeFiles/log.dir
+C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log/CMakeFiles/edit_cache.dir
+C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log/CMakeFiles/rebuild_cache.dir

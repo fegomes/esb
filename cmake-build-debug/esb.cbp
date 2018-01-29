@@ -5,7 +5,7 @@
 		<Option title="esb"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="msvc8"/>
-		<Option virtualFolders="CMake Files\;CMake Files\listener\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\listener\;CMake Files\log\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug"/>
@@ -45,6 +45,8 @@
 				<Option compiler="msvc8"/>
 				<Compiler>
 					<Add directory="C:/Users/fernando/Downloads/boost_1_62_0"/>
+					<Add directory="C:/Users/fernando/Source/Repos/spdlog/include"/>
+					<Add directory="C:/Users/fernando/Source/Repos/esb/log"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
@@ -68,6 +70,8 @@
 				<Option compiler="msvc8"/>
 				<Compiler>
 					<Add directory="C:/Users/fernando/Downloads/boost_1_62_0"/>
+					<Add directory="C:/Users/fernando/Source/Repos/spdlog/include"/>
+					<Add directory="C:/Users/fernando/Source/Repos/esb/log"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
@@ -83,9 +87,63 @@
 					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\listener\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="log">
+				<Option output="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log/log.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/fernando/Downloads/boost_1_62_0"/>
+					<Add directory="C:/Users/fernando/Source/Repos/spdlog/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\winrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 log"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="log/fast">
+				<Option output="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log/log.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/fernando/Source/Repos/esb/cmake-build-debug/log"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/fernando/Downloads/boost_1_62_0"/>
+					<Add directory="C:/Users/fernando/Source/Repos/spdlog/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\8.1\include\winrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 log/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\fernando\Source\Repos\esb\cmake-build-debug\log\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
 		<Unit filename="C:/Users/fernando/Source/Repos/esb/listener/main.cpp">
 			<Option target="listener"/>
+		</Unit>
+		<Unit filename="C:/Users/fernando/Source/Repos/esb/log/log.cpp">
+			<Option target="log"/>
+		</Unit>
+		<Unit filename="C:/Users/fernando/Source/Repos/esb/log/log.h">
+			<Option target="log"/>
 		</Unit>
 		<Unit filename="C:/Users/fernando/Source/Repos/esb/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
@@ -95,6 +153,12 @@
 		</Unit>
 		<Unit filename="C:/Users/fernando/Source/Repos/esb/listener/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\listener\"/>
+		</Unit>
+		<Unit filename="C:/Users/fernando/Source/Repos/esb/log/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\log\"/>
+		</Unit>
+		<Unit filename="C:/Users/fernando/Source/Repos/esb/log/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\log\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

@@ -1,4 +1,4 @@
-//#include "log.h"
+#include "log.h"
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
 
 int init() {
     try {
-        //	core::log::get().init("esb", "log.ini");
+        core::log::get().init("esb", "log.ini");
         esb::ini::get().init("esb.ini");
     }
     catch (...) {
@@ -74,7 +74,7 @@ inline void receive(receiver& rec, std::chrono::duration<Rep, Period> &d) {
         len = 0;
         rec.receive(output, len);
         if (len > 0) {
-            std::cout << boost::any_cast<std::string>(output) << std::endl;
+            core::log::trace("teste");
         }
         std::this_thread::sleep_for(d);
     }

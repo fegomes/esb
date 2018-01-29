@@ -3,6 +3,5 @@ project(esb)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories($ENV{BOOST})
-
 add_subdirectory(listener)
+add_subdirectory(log)
