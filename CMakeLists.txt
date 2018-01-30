@@ -3,6 +3,7 @@ project(esb)
 
 set(CMAKE_CXX_STANDARD 14)
 
+file(MAKE_DIRECTORY bin)
 
 add_subdirectory(log)
 add_subdirectory(http)
