@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
 int init() {
     try {
         core::log::get().init("esb", "log.ini");
-        esb::ini::get().init("esb.ini");
+        esb::ini::get().init("listener.ini");
     }
     catch (...) {
         return false;
