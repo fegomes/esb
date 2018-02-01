@@ -3,6 +3,6 @@ listeners=http
 
 [http]
 path=./
-init=http.ini
+ini=http.ini
 lib=http
 priority=20

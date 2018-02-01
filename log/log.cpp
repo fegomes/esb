@@ -47,7 +47,7 @@ namespace core {
 
 	void log::load(const std::string& process, const std::string& ini)
 	{
-		boost::property_tree::ptree pt;
+		boost::property_tree::iptree pt;
 		boost::property_tree::ini_parser::read_ini(ini, pt);
 
 		_file_name = pt.get<std::string>("General.Filename");

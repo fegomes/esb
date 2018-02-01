@@ -17,9 +17,13 @@ inline void receive(receiver& rec, std::chrono::duration<Rep, Period> &d);
 
 int main(int argc, char* argv[])
 {
+    std::cout << "starting listener" << std::endl;
+
     if (!init()) {
         return 1;
     }
+
+    std::cout << "after init" << std::endl;
 
     std::vector<std::shared_ptr<std::thread> > threads;
     std::vector<boost::shared_ptr<receiver>> receivers;

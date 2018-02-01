@@ -4,6 +4,8 @@ project(esb)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${esb_SOURCE_DIR}/bin)
 
+file(MAKE_DIRECTORY ${esb_SOURCE_DIR}/bin/log)
+
 file(COPY ${esb_SOURCE_DIR}/config/listener.ini.example DESTINATION ${esb_SOURCE_DIR}/bin)
 file(RENAME ${esb_SOURCE_DIR}/bin/listener.ini.example ${esb_SOURCE_DIR}/bin/listener.ini)
 

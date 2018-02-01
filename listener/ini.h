@@ -45,7 +45,7 @@ namespace esb {
 
 		void init(const std::string& filename) {
 			_filename = filename;
-			boost::property_tree::ptree pt;
+			boost::property_tree::iptree pt;
 			boost::property_tree::ini_parser::read_ini(filename, pt);
 
 			std::string listeners = pt.get<std::string>("General.listeners");

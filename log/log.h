@@ -22,7 +22,7 @@ namespace core {
 		}
 
 	private:
-		void log::load(const std::string& process, const std::string& ini);
+		void load(const std::string& process, const std::string& ini);
 
 	private:
 		std::string                     _file_name;
@@ -62,34 +62,33 @@ namespace core {
 			core::log::get().logger().trace(fmt, arg1, args);
 		}
 		template <typename Arg1, typename... Args> 
-		static void debug(const char* fmt, const Arg1&, const Args&... args) {
+		static void debug(const char* fmt, const Arg1&  arg1, const Args&... args) {
 			core::log::get().logger().debug(fmt, arg1, args);
 		}
 		template <typename Arg1, typename... Args> 
-		static void info(const char* fmt, const Arg1&, const Args&... args) {
+		static void info(const char* fmt, const Arg1&  arg1, const Args&... args) {
 			core::log::get().logger().info(fmt, arg1, args);
 		}
 		template <typename Arg1, typename... Args> 
-		static void warn(const char* fmt, const Arg1&, const Args&... args) {
+		static void warn(const char* fmt, const Arg1&  arg1, const Args&... args) {
 			core::log::get().logger().warm(fmt, arg1, args);
 		}
 		template <typename Arg1, typename... Args> 
-		static void error(const char* fmt, const Arg1&, const Args&... args) {
+		static void error(const char* fmt, const Arg1&  arg1, const Args&... args) {
 			core::log::get().logger().error(fmt, arg1, args);
 		}
 		template <typename Arg1, typename... Args> 
-		static void critical(const char* fmt, const Arg1&, const Args&... args) {
+		static void critical(const char* fmt, const Arg1& arg1, const Args&... args) {
 			core::log::get().logger().critical(fmt, arg1, args);
 		}
 
 		class score {
 		public:
 			score(const std::string& name) {
-				_name = name;
-				info("Begin[" + _name + "]");
+				info("Begin");
 			}
 			~score() {
-				info("End[" + _name + "]");
+				info("End");
 			}
 
 		private:
