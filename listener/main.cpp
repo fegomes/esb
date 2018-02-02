@@ -13,17 +13,13 @@
 
 int init();
 template< typename Rep, typename Period>
-inline void receive(receiver& rec, std::chrono::duration<Rep, Period> &d);
+inline void receive(receiver& rec, std::chrono::duration<Rep, Period> d);
 
 int main(int argc, char* argv[])
 {
-    std::cout << "starting listener" << std::endl;
-
     if (!init()) {
         return 1;
     }
-
-    std::cout << "after init" << std::endl;
 
     std::vector<std::shared_ptr<std::thread> > threads;
     std::vector<boost::shared_ptr<receiver>> receivers;
@@ -47,7 +43,7 @@ int main(int argc, char* argv[])
     }
 
     for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
-        std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  receive(*ci->get(), std::chrono::milliseconds(ci->get()->get_priority() * 50)); }));
+        std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  receive(*ci->get(), std::chrono::milliseconds( ci->get()->get_priority() )); }));
         threads.push_back(std::move(thread));
     }
 
@@ -70,7 +66,7 @@ int init() {
 }
 
 template< typename Rep, typename Period>
-inline void receive(receiver& rec, std::chrono::duration<Rep, Period> &d) {
+inline void receive(receiver& rec, std::chrono::duration<Rep, Period> d) {
     boost::any output;
     size_t len = 0;
     while (true) {
