@@ -2,14 +2,13 @@
 
 #include <thread>
 
-#include <log.h>
-
+#include "log.h"
 #include "plugin/receiver.h"
 
-class loop {
+class event_loop {
 public:
-    loop() = default;
-    virtual ~loop() = default;
+    event_loop() = default;
+    virtual ~event_loop() = default;
 
     template < class Rep, class Period >
     static void receive(receiver& rec, std::chrono::duration<Rep, Period> d) {

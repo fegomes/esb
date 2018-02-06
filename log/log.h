@@ -83,10 +83,12 @@ namespace core {
 		class score {
 		public:
 			score(const std::string& name) {
+                get().logger().set_custom_flag('1', name);
 				info("Begin");
 			}
 			~score() {
 				info("End");
+                get().logger().set_custom_flag('1', "");
 			}
 
 		private:

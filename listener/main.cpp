@@ -11,7 +11,7 @@
 #include "plugin/receiver.h"
 
 #include "ini.h"
-#include "loop.h"
+#include "event_loop.h"
 
 int init() {
     try {
@@ -41,24 +41,13 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    core::log::score s(__FUNCTION__);
+
     std::vector<std::shared_ptr<std::thread> > threads;
-    std::vector<boost::shared_ptr<receiver>> receivers;
-    auto protocols = esb::ini::get().get_listeners();
-
-    for (auto ci = protocols.begin(); ci != protocols.end(); ci++) {
-        boost::filesystem::path lib_path(ci->second._path);
-        boost::shared_ptr<receiver> recv = boost::dll::import<receiver>(ci->second._fullpath_lib,
-                                                                        "plugin",
-                                                                        boost::dll::load_mode::append_decorations
-        );
-        recv->load(ci->second._fullpath_ini);
-        recv->set_priority(ci->second._priority);
-        receivers.push_back(std::move(recv));
-    }
-
-
+    esb::ini::receivers receivers = esb::ini::get().get_receivers();
+    
     for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
-        std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  ci->get()->init(); loop::receive(*ci->get(), std::chrono::milliseconds( ci->get()->get_priority() )); }));
+        std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  ci->get()->init(); event_loop::receive(*ci->get(), std::chrono::milliseconds( ci->get()->get_priority() )); }));
         threads.push_back(std::move(thread));
     }
 

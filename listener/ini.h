@@ -8,12 +8,12 @@
 #include <boost/algorithm/string.hpp>
 
 struct listener {
-	std::string  _ini;
-	std::string  _lib;
-	std::string  _path;
-	unsigned int _priority;
-	std::string  _fullpath_ini;
-	std::string  _fullpath_lib;
+	std::string  ini;
+	std::string  lib;
+	std::string  path;
+	unsigned int priority;
+	std::string  fullpath_ini;
+	std::string  fullpath_lib;
 };
 
 namespace esb {
@@ -28,6 +28,7 @@ namespace esb {
 
 	public:
 		typedef std::unordered_map<std::string, listener> listeners_map;
+        typedef std::vector<boost::shared_ptr<receiver>> receivers;
 
 		static ini& get() {
 			if (!_instance) {
@@ -54,24 +55,39 @@ namespace esb {
 
 			for (auto ci = v_listeners.begin(); ci != v_listeners.end(); ci++) {
 				listener l;
-				l._path = pt.get<std::string>(*ci + ".path");
-				l._ini = pt.get<std::string>(*ci + ".ini");
-				l._lib = pt.get<std::string>(*ci + ".lib");
-				l._priority = pt.get<unsigned int>(*ci + ".priority");
-				l._fullpath_ini = l._path + '\\' + l._ini;
-				l._fullpath_lib = l._path + '\\' + l._lib;
+				l.path = pt.get<std::string>(*ci + ".path");
+				l.ini = pt.get<std::string>(*ci + ".ini");
+				l.lib = pt.get<std::string>(*ci + ".lib");
+				l.priority = pt.get<unsigned int>(*ci + ".priority");
+				l.fullpath_ini = l.path + '\\' + l.ini;
+				l.fullpath_lib = l.path + '\\' + l.lib;
 				_listeners[*ci] = std::move(l);
 			}
+
+            for (auto ci = _listeners.begin(); ci != _listeners.end(); ci++) {
+                boost::filesystem::path lib_path(ci->second.path);
+                boost::shared_ptr<receiver> recv = boost::dll::import<receiver>(ci->second.fullpath_lib,
+                    "plugin",
+                    boost::dll::load_mode::append_decorations
+                    );
+                recv->load(ci->second.fullpath_ini);
+                recv->set_priority(ci->second.priority);
+                _receivers.push_back(std::move(recv));
+            }
 		}
 
-		const listeners_map& get_listeners() const {
-			return _listeners;
+		const receivers& get_receivers() const {
+			return _receivers;
 		}
+
+    private:
+
 		
 
 	private:
 		listeners_map _listeners;
 		std::string   _filename;
+        receivers     _receivers;
 	};
 
 	ini* ini::_instance = nullptr;
