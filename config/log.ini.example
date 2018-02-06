@@ -1,0 +1,6 @@
+[general]
+filename=%P.log
+target=./log/
+rotationsize=1024
+format=%+
+level=trace

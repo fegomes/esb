@@ -1,0 +1,8 @@
+[general]
+listeners=http
+
+[http]
+path=./
+ini=http.ini
+lib=http
+priority=20
