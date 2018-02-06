@@ -80,13 +80,13 @@ namespace core {
 			core::log::get().logger().critical(fmt, arg1, args...);
 		}
 
-		class score {
+		class scope {
 		public:
-			score(const std::string& name) {
+            scope(const std::string& name) {
                 get().logger().set_custom_flag('1', name);
 				info("Begin");
 			}
-			~score() {
+			~scope() {
 				info("End");
                 get().logger().set_custom_flag('1', "");
 			}

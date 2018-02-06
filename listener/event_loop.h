@@ -12,6 +12,10 @@ public:
 
     template < class Rep, class Period >
     static void receive(receiver& rec, std::chrono::duration<Rep, Period> d) {
+        core::log::scope s(__FUNCTION__);
+
+        core::log::trace("Receiving");
+
         boost::any output;
         size_t len = 0;
         while (rec.is_running()) {
