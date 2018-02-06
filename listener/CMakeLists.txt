@@ -13,7 +13,7 @@ include_directories(${esb_SOURCE_DIR}/log)
 
 link_directories($ENV{BOOST}/stage/lib)
 
-add_executable(listener main.cpp)
+add_executable(listener loop.cpp main.cpp)
 
 if(UNIX)
 target_link_libraries(listener log ${CMAKE_THREAD_LIBS_INIT} boost_system boost_filesystem dl)

@@ -17,9 +17,7 @@ namespace core {
 		static log& get();
 		static void release();
 		void init(const std::string& process, const std::string& file_name);
-		spdlog::logger& logger() {
-			return *_logger.get();
-		}
+		spdlog::logger& logger() const;
 
 	private:
 		void load(const std::string& process, const std::string& ini);

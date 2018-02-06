@@ -25,6 +25,10 @@ namespace core {
 	}
 
 	void log::release() {
+	    if(_instance){
+	        delete _instance;
+	        _instance = nullptr;
+	    }
 	}
 
 	/*
@@ -45,8 +49,7 @@ namespace core {
 
 	}
 
-	void log::load(const std::string& process, const std::string& ini)
-	{
+	void log::load(const std::string& process, const std::string& ini)	{
 		boost::property_tree::iptree pt;
 		boost::property_tree::ini_parser::read_ini(ini, pt);
 
@@ -59,6 +62,10 @@ namespace core {
 		_level = spdlog::level::to_level_enum(pt.get<std::string>("General.Level").c_str());
 
 	}
+
+    spdlog::logger& log::logger() const {
+        return *_logger.get();
+    }
 
 
 }

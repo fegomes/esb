@@ -8,12 +8,32 @@
 #include <boost/filesystem.hpp>
 #include <boost/bind.hpp>
 
-#include "ini.h"
 #include "plugin/receiver.h"
 
-int init();
-template< typename Rep, typename Period>
-inline void receive(receiver& rec, std::chrono::duration<Rep, Period> d);
+#include "ini.h"
+#include "loop.h"
+
+int init() {
+    try {
+        core::log::get().init("esb", "log.ini");
+        esb::ini::get().init("listener.ini");
+    }
+    catch (...) {
+        return false;
+    }
+    return true;
+}
+
+int done() {
+    try {
+        core::log::release();
+        esb::ini::release();
+    }
+    catch (...) {
+        return false;
+    }
+    return true;
+}
 
 int main(int argc, char* argv[])
 {
@@ -38,12 +58,7 @@ int main(int argc, char* argv[])
 
 
     for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
-        std::shared_ptr<std::thread> thread(new std::thread([&ci]() { ci->get()->init(); }));
-        threads.push_back(std::move(thread));
-    }
-
-    for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
-        std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  receive(*ci->get(), std::chrono::milliseconds( ci->get()->get_priority() )); }));
+        std::shared_ptr<std::thread> thread(new std::thread([&ci]() {  ci->get()->init(); loop::receive(*ci->get(), std::chrono::milliseconds( ci->get()->get_priority() )); }));
         threads.push_back(std::move(thread));
     }
 
@@ -51,31 +66,13 @@ int main(int argc, char* argv[])
         ci->get()->join();
     }
 
+    if(!done()){
+        return 1;
+    }
+
     return 0;
 }
 
-int init() {
-    try {
-        core::log::get().init("esb", "log.ini");
-        esb::ini::get().init("listener.ini");
-    }
-    catch (...) {
-        return false;
-    }
-    return true;
-}
 
-template< typename Rep, typename Period>
-inline void receive(receiver& rec, std::chrono::duration<Rep, Period> d) {
-    boost::any output;
-    size_t len = 0;
-    while (true) {
-        output.clear();
-        len = 0;
-        rec.receive(output, len);
-        if (len > 0) {
-            core::log::trace("teste");
-        }
-        std::this_thread::sleep_for(d);
-    }
-}
+
+
