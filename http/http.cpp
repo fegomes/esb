@@ -54,7 +54,7 @@ namespace comm {
 			_requests.push(request);
 		}
 
-		void receive(boost::any& output, size_t& len) {
+		void receive(boost::any& output) {
 			if (_requests.empty()) {
 				return;
 			}
@@ -63,7 +63,6 @@ namespace comm {
 			_requests.pop();
 			_lock.unlock();
 
-			len = body.size();
 			output = std::move(body);
 		}
 
