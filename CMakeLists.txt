@@ -15,6 +15,9 @@ file(RENAME ${esb_SOURCE_DIR}/bin/log.ini.example ${esb_SOURCE_DIR}/bin/log.ini)
 file(COPY ${esb_SOURCE_DIR}/config/http.ini.example DESTINATION ${esb_SOURCE_DIR}/bin)
 file(RENAME ${esb_SOURCE_DIR}/bin/http.ini.example ${esb_SOURCE_DIR}/bin/http.ini)
 
+file(COPY ${esb_SOURCE_DIR}/config/shared.ini.example DESTINATION ${esb_SOURCE_DIR}/bin)
+file(RENAME ${esb_SOURCE_DIR}/bin/shared.ini.example ${esb_SOURCE_DIR}/bin/shared.ini)
+
 add_subdirectory(log)
 add_subdirectory(http)
 add_subdirectory(shared)

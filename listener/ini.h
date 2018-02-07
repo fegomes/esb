@@ -48,7 +48,8 @@ namespace esb {
             load_receivers(pt);
             load_publishers(pt);
             load_requesters(pt);
-          
+
+            map_plugins();
 		}
 
 		const receivers& get_receivers() const {
@@ -118,7 +119,7 @@ namespace esb {
                         );
 
                     pub->set_ini_file(pt.get<std::string>(*ci + ".ini", "config.ini"));
-                    pub->receiver_name = pt.get<std::string>(*ci + ".receiver");
+                    pub->receiver_name = pt.get<std::string>(*ci + ".receiver", "");
                     pub->set_priority(pt.get<unsigned int>(*ci + ".priority", 500));
                     pub->set_library(lib);
                     pub->set_path(lib_path.string());
@@ -134,7 +135,7 @@ namespace esb {
 
         void load_requesters(boost::property_tree::iptree& pt) {
             std::vector<std::string> v_requesters;
-            std::string requesters = pt.get<std::string>("general.receivers");
+            std::string requesters = pt.get<std::string>("general.requesters");
             boost::split(v_requesters, requesters, boost::is_any_of(","));
 
             for (auto ci = v_requesters.begin(); ci != v_requesters.end(); ci++) {
@@ -163,6 +164,34 @@ namespace esb {
                 }
                 catch (std::exception& e) {
                     std::cout << e.what() << std::endl;
+                }
+            }
+        }
+
+        void map_plugins() {
+            for (auto ci = _receivers.begin(); ci != _receivers.end(); ci++) {
+                auto pub = _publishers.find(ci->second->publisher_name);
+                if (pub != _publishers.end()) {
+                    ci->second->pub = pub->second;
+                }
+            }
+
+            for (auto ci = _publishers.begin(); ci != _publishers.end(); ci++) {
+                auto rec = _receivers.find(ci->second->receiver_name);
+                if (rec != _receivers.end()) {
+                    ci->second->rec = rec->second;
+                }
+            }
+
+            for (auto ci = _requesters.begin(); ci != _requesters.end(); ci++) {
+                auto rec = _receivers.find(ci->second->receiver_name);
+                if (rec != _receivers.end()) {
+                    ci->second->rec = rec->second;
+                }
+
+                auto pub = _publishers.find(ci->second->publisher_name);
+                if (pub != _publishers.end()) {
+                    ci->second->pub = pub->second;
                 }
             }
         }

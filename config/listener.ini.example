@@ -1,8 +1,16 @@
 [general]
-listeners=http
+receivers=http
+publishers=shared
 
 [http]
 path=./
 ini=http.ini
 lib=http
+priority=20
+publisher=shared
+
+[shared]
+path=./
+ini=shared.ini
+lib=shared
 priority=20
