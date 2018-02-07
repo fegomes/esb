@@ -30,13 +30,11 @@ public:
         core::log::trace("Receiving");
 
         boost::any output;
-        size_t len = 0;
         while (rec.is_running()) {
             output.clear();
-            len = 0;
             rec.receive(output);
-            if (len > 0) {
-                send(output);
+            if (!output.empty()) {
+                rec.pub.send(output);
             }
             std::this_thread::sleep_for(d);
         }
@@ -53,10 +51,12 @@ public:
         boost::any input;
         boost::any output;
         while (req.is_running()) {
-            input = get();
+            input.clear();
+            output.clear();
+            req.rec.receive(input);
             if (!input.empty()) {
                 req.request(input, output);
-                send(output);
+                req.pub.send(output);
             }
             std::this_thread::sleep_for(d);
         }
@@ -73,6 +73,7 @@ public:
 
         boost::any input;
         while (pub.is_running()) {
+            input.clear();
             input = get();
             if (!input.empty()) {
                 pub.send(input);
