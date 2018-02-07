@@ -1,8 +1,10 @@
 #pragma once
 #include <boost/any.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "plugin.h"
-#include "publisher.h"
+
+class publisher;
 
 class receiver : public plugin {
 public:

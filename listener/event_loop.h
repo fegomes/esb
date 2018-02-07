@@ -8,16 +8,6 @@
 #include "plugin/requester.h"
 #include "plugin/publisher.h"
 
-static void send(boost::any input) {
-    
-}
-
-static boost::any get() {
-    boost::any response("");
-    return response;
-}
-
-
 class event_loop {
 public:
     event_loop() = default;
@@ -27,41 +17,43 @@ public:
     static void receive(receiver& rec, std::chrono::duration<Rep, Period> d) {
         core::log::scope s(__FUNCTION__);
 
-        core::log::trace("Receiving");
+        core::log::trace("receiving");
 
         boost::any output;
         while (rec.is_running()) {
             output.clear();
             rec.receive(output);
             if (!output.empty()) {
-                rec.pub.send(output);
+                rec.pub.get()->send(output);
+                core::log::trace("received");
             }
             std::this_thread::sleep_for(d);
         }
 
-        core::log::trace("Stop Receive");
+        core::log::trace("stop receive");
     }
 
     template < class Rep, class Period >
     static void request(requester& req, std::chrono::duration<Rep, Period> d) {
         core::log::scope s(__FUNCTION__);
 
-        core::log::trace("Run Requester");
+        core::log::trace("run requester");
 
         boost::any input;
         boost::any output;
         while (req.is_running()) {
             input.clear();
             output.clear();
-            req.rec.receive(input);
+            req.rec.get()->receive(input);
             if (!input.empty()) {
                 req.request(input, output);
-                req.pub.send(output);
+                req.pub.get()->send(output);
+                core::log::trace("requested");
             }
             std::this_thread::sleep_for(d);
         }
 
-        core::log::trace("Stop Requester");
+        core::log::trace("stop requester");
     }
 
 
@@ -69,18 +61,19 @@ public:
     static void publish(publisher& pub, std::chrono::duration<Rep, Period> d) {
         core::log::scope s(__FUNCTION__);
 
-        core::log::trace("Run Publisher");
+        core::log::trace("run publisher");
 
         boost::any input;
         while (pub.is_running()) {
             input.clear();
-            input = get();
+            pub.rec.get()->receive(input);
             if (!input.empty()) {
                 pub.send(input);
+                core::log::trace("published");
             }
             std::this_thread::sleep_for(d);
         }
 
-        core::log::trace("Stop Publisher");
+        core::log::trace("stop publisher");
     }
 };

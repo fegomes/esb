@@ -27,14 +27,35 @@ int init() {
 void run() {
     core::log::scope s(__FUNCTION__);
     std::vector<std::shared_ptr<std::thread> > threads;
-    esb::ini::receivers receivers = esb::ini::get().get_receivers();
-    
+    esb::ini::receivers recs = esb::ini::get().get_receivers();
+    esb::ini::requesters reqs = esb::ini::get().get_requesters();
+    esb::ini::publishers pubs = esb::ini::get().get_publishers();
 
-    for (auto ci = receivers.begin(); ci != receivers.end(); ci++) {
+    for (auto ci = recs.begin(); ci != recs.end(); ci++) {
         auto recv = ci->second;
         std::shared_ptr<std::thread> thread(new std::thread([&recv]() {
             recv->init();
             event_loop::receive(*recv.get(), std::chrono::milliseconds(recv->get_priority())); 
+        }));
+        threads.push_back(std::move(thread));
+    }
+
+
+    for (auto ci = reqs.begin(); ci != reqs.end(); ci++) {
+        auto req = ci->second;
+        std::shared_ptr<std::thread> thread(new std::thread([&req]() {
+            req->init();
+            event_loop::request(*req.get(), std::chrono::milliseconds(req->get_priority()));
+        }));
+        threads.push_back(std::move(thread));
+    }
+
+
+    for (auto ci = pubs.begin(); ci != pubs.end(); ci++) {
+        auto pub = ci->second;
+        std::shared_ptr<std::thread> thread(new std::thread([&pub]() {
+            pub->init();
+            event_loop::publish(*pub.get(), std::chrono::milliseconds(pub->get_priority()));
         }));
         threads.push_back(std::move(thread));
     }

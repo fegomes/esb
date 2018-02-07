@@ -7,6 +7,10 @@
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/algorithm/string.hpp>
 
+#include "plugin/receiver.h"
+#include "plugin/publisher.h"
+#include "plugin/requester.h"
+
 namespace esb {
 
 	class ini {
@@ -50,6 +54,14 @@ namespace esb {
 		const receivers& get_receivers() const {
 			return _receivers;
 		}
+
+        const requesters& get_requesters() const {
+            return _requesters;
+        }
+
+        const publishers& get_publishers() const {
+            return _publishers;
+        }
 
     private:
         void load_receivers(boost::property_tree::iptree& pt) {
