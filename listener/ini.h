@@ -118,6 +118,7 @@ namespace esb {
                         );
 
                     pub->set_ini_file(pt.get<std::string>(*ci + ".ini", "config.ini"));
+                    pub->receiver_name = pt.get<std::string>(*ci + ".receiver");
                     pub->set_priority(pt.get<unsigned int>(*ci + ".priority", 500));
                     pub->set_library(lib);
                     pub->set_path(lib_path.string());
@@ -152,6 +153,7 @@ namespace esb {
 
                     req->set_ini_file(pt.get<std::string>(*ci + ".ini", "config.ini"));
                     req->publisher_name = pt.get<std::string>(*ci + ".publisher");
+                    req->receiver_name = pt.get<std::string>(*ci + ".receiver");
                     req->set_priority(pt.get<unsigned int>(*ci + ".priority", 500));
                     req->set_library(lib);
                     req->set_path(lib_path.string());

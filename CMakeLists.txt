@@ -17,4 +17,5 @@ file(RENAME ${esb_SOURCE_DIR}/bin/http.ini.example ${esb_SOURCE_DIR}/bin/http.in
 
 add_subdirectory(log)
 add_subdirectory(http)
+add_subdirectory(shared)
 add_subdirectory(listener)

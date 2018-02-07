@@ -8,8 +8,6 @@
 #include <boost/filesystem.hpp>
 #include <boost/bind.hpp>
 
-#include "plugin/receiver.h"
-
 #include "ini.h"
 #include "event_loop.h"
 
