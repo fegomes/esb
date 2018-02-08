@@ -17,43 +17,47 @@ public:
     static void receive(receiver& rec, std::chrono::duration<Rep, Period> d) {
         core::log::scope s(__FUNCTION__);
 
-        core::log::trace("receiving");
+        if (rec.pub.get()) {
 
-        boost::any output;
-        while (rec.is_running()) {
-            output.clear();
-            rec.receive(output);
-            if (!output.empty()) {
-                rec.pub.get()->send(output);
-                core::log::trace("received");
+            core::log::trace("receiving");
+
+            boost::any output;
+            while (rec.is_running()) {
+                output.clear();
+                rec.receive(output);
+                if (!output.empty()) {
+                    rec.pub.get()->send(output);
+                    core::log::trace("received");
+                }
+                std::this_thread::sleep_for(d);
             }
-            std::this_thread::sleep_for(d);
-        }
 
-        core::log::trace("stop receive");
+            core::log::trace("stop receive");
+        }
     }
 
     template < class Rep, class Period >
     static void request(requester& req, std::chrono::duration<Rep, Period> d) {
         core::log::scope s(__FUNCTION__);
 
-        core::log::trace("run requester");
-
-        boost::any input;
-        boost::any output;
-        while (req.is_running()) {
-            input.clear();
-            output.clear();
-            req.rec.get()->receive(input);
-            if (!input.empty()) {
-                req.request(input, output);
-                req.pub.get()->send(output);
-                core::log::trace("requested");
+        if (req.rec.get() && req.pub.get()) {
+            core::log::trace("run requester");
+            boost::any input;
+            boost::any output;
+            while (req.is_running()) {
+                input.clear();
+                output.clear();
+                req.rec.get()->receive(input);
+                if (!input.empty()) {
+                    req.request(input, output);
+                    req.pub.get()->send(output);
+                    core::log::trace("requested");
+                }
+                std::this_thread::sleep_for(d);
             }
-            std::this_thread::sleep_for(d);
-        }
 
-        core::log::trace("stop requester");
+            core::log::trace("stop requester");
+        }
     }
 
 
@@ -61,19 +65,22 @@ public:
     static void publish(publisher& pub, std::chrono::duration<Rep, Period> d) {
         core::log::scope s(__FUNCTION__);
 
-        core::log::trace("run publisher");
+        if (pub.rec.get()) {
 
-        boost::any input;
-        while (pub.is_running()) {
-            input.clear();
-            pub.rec.get()->receive(input);
-            if (!input.empty()) {
-                pub.send(input);
-                core::log::trace("published");
+            core::log::trace("run publisher");
+
+            boost::any input;
+            while (pub.is_running()) {
+                input.clear();
+                pub.rec.get()->receive(input);
+                if (!input.empty()) {
+                    pub.send(input);
+                    core::log::trace("published");
+                }
+                std::this_thread::sleep_for(d);
             }
-            std::this_thread::sleep_for(d);
-        }
 
-        core::log::trace("stop publisher");
+            core::log::trace("stop publisher");
+        }
     }
 };

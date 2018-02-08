@@ -67,7 +67,12 @@ namespace esb {
     private:
         void load_receivers(boost::property_tree::iptree& pt) {
             std::vector<std::string> v_receivers;
-            std::string receivers = pt.get<std::string>("general.receivers");
+            std::string receivers = pt.get<std::string>("general.receivers", "");
+
+            if (receivers.empty()) {
+                return;
+            }
+
             boost::split(v_receivers, receivers, boost::is_any_of(","));
 
             for (auto ci = v_receivers.begin(); ci != v_receivers.end(); ci++) {
@@ -101,7 +106,12 @@ namespace esb {
 
         void load_publishers(boost::property_tree::iptree& pt) {
             std::vector<std::string> v_publishers;
-            std::string publishers = pt.get<std::string>("general.publishers");
+            std::string publishers = pt.get<std::string>("general.publishers", "");
+
+            if (publishers.empty()) {
+                return;
+            }
+
             boost::split(v_publishers, publishers, boost::is_any_of(","));
 
             for (auto ci = v_publishers.begin(); ci != v_publishers.end(); ci++) {
@@ -135,7 +145,12 @@ namespace esb {
 
         void load_requesters(boost::property_tree::iptree& pt) {
             std::vector<std::string> v_requesters;
-            std::string requesters = pt.get<std::string>("general.requesters");
+            std::string requesters = pt.get<std::string>("general.requesters", "");
+            
+            if (requesters.empty()) {
+                return;
+            }
+
             boost::split(v_requesters, requesters, boost::is_any_of(","));
 
             for (auto ci = v_requesters.begin(); ci != v_requesters.end(); ci++) {
@@ -160,6 +175,8 @@ namespace esb {
                     req->set_path(lib_path.string());
                     req->load(req->fullpath_ini());
 
+                    pt.get<bool>(*ci + "");
+
                     _requesters[*ci] = std::move(req);
                 }
                 catch (std::exception& e) {
@@ -172,6 +189,7 @@ namespace esb {
             for (auto ci = _receivers.begin(); ci != _receivers.end(); ci++) {
                 auto pub = _publishers.find(ci->second->publisher_name);
                 if (pub != _publishers.end()) {
+                    pub->second->stop();
                     ci->second->pub = pub->second;
                 }
             }

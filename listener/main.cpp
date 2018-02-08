@@ -33,26 +33,45 @@ void run() {
         auto recv = ci->second;
         std::shared_ptr<std::thread> thread(new std::thread([&recv]() {
             recv->init();
+        }));
+        threads.push_back(std::move(thread));
+    }
+
+    for (auto ci = recs.begin(); ci != recs.end(); ci++) {
+        auto recv = ci->second;
+        std::shared_ptr<std::thread> thread(new std::thread([&recv]() {
             event_loop::receive(*recv.get(), std::chrono::milliseconds(recv->get_priority())); 
         }));
         threads.push_back(std::move(thread));
     }
 
-
     for (auto ci = reqs.begin(); ci != reqs.end(); ci++) {
         auto req = ci->second;
         std::shared_ptr<std::thread> thread(new std::thread([&req]() {
             req->init();
+        }));
+        threads.push_back(std::move(thread));
+    }
+
+    for (auto ci = reqs.begin(); ci != reqs.end(); ci++) {
+        auto req = ci->second;
+        std::shared_ptr<std::thread> thread(new std::thread([&req]() {
             event_loop::request(*req.get(), std::chrono::milliseconds(req->get_priority()));
         }));
         threads.push_back(std::move(thread));
     }
 
-
     for (auto ci = pubs.begin(); ci != pubs.end(); ci++) {
         auto pub = ci->second;
         std::shared_ptr<std::thread> thread(new std::thread([&pub]() {
             pub->init();
+        }));
+        threads.push_back(std::move(thread));
+    }
+
+    for (auto ci = pubs.begin(); ci != pubs.end(); ci++) {
+        auto pub = ci->second;
+        std::shared_ptr<std::thread> thread(new std::thread([&pub]() {
             event_loop::publish(*pub.get(), std::chrono::milliseconds(pub->get_priority()));
         }));
         threads.push_back(std::move(thread));
