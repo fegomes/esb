@@ -26,7 +26,7 @@ public:
                 output.clear();
                 rec.receive(output);
                 if (!output.empty()) {
-                    rec.pub.get()->send(output);
+                    rec.pub->send(output);
                     core::log::trace("received");
                 }
                 std::this_thread::sleep_for(d);
@@ -47,10 +47,10 @@ public:
             while (req.is_running()) {
                 input.clear();
                 output.clear();
-                req.rec.get()->receive(input);
+                req.rec->receive(input);
                 if (!input.empty()) {
                     req.request(input, output);
-                    req.pub.get()->send(output);
+                    req.pub->send(output);
                     core::log::trace("requested");
                 }
                 std::this_thread::sleep_for(d);
@@ -72,7 +72,7 @@ public:
             boost::any input;
             while (pub.is_running()) {
                 input.clear();
-                pub.rec.get()->receive(input);
+                pub.rec->receive(input);
                 if (!input.empty()) {
                     pub.send(input);
                     core::log::trace("published");

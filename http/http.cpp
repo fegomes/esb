@@ -58,12 +58,13 @@ namespace comm {
 			if (_requests.empty()) {
 				return;
 			}
+
 			_lock.lock();
-			std::string body = std::move(_requests.front().body);
+			output = _requests.back();
 			_requests.pop();
 			_lock.unlock();
 
-			output = std::move(body);
+			//output = std::move(body);
 		}
 
 		void end() override {

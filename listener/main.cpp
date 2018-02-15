@@ -29,18 +29,14 @@ void run() {
     esb::ini::requesters reqs = esb::ini::get().get_requesters();
     esb::ini::publishers pubs = esb::ini::get().get_publishers();
 
-    for (auto ci = recs.begin(); ci != recs.end(); ci++) {
-        auto recv = ci->second;
-        std::shared_ptr<std::thread> thread(new std::thread([&recv]() {
-            recv->init();
-        }));
-        threads.push_back(std::move(thread));
-    }
+    
+
+    
 
     for (auto ci = recs.begin(); ci != recs.end(); ci++) {
         auto recv = ci->second;
         std::shared_ptr<std::thread> thread(new std::thread([&recv]() {
-            event_loop::receive(*recv.get(), std::chrono::milliseconds(recv->get_priority())); 
+            recv->init();
         }));
         threads.push_back(std::move(thread));
     }
@@ -53,18 +49,26 @@ void run() {
         threads.push_back(std::move(thread));
     }
 
-    for (auto ci = reqs.begin(); ci != reqs.end(); ci++) {
-        auto req = ci->second;
-        std::shared_ptr<std::thread> thread(new std::thread([&req]() {
-            event_loop::request(*req.get(), std::chrono::milliseconds(req->get_priority()));
-        }));
-        threads.push_back(std::move(thread));
-    }
-
     for (auto ci = pubs.begin(); ci != pubs.end(); ci++) {
         auto pub = ci->second;
         std::shared_ptr<std::thread> thread(new std::thread([&pub]() {
             pub->init();
+        }));
+        threads.push_back(std::move(thread));
+    }
+
+    for (auto ci = recs.begin(); ci != recs.end(); ci++) {
+        auto recv = ci->second;
+        std::shared_ptr<std::thread> thread(new std::thread([&recv]() {
+            event_loop::receive(*recv.get(), std::chrono::milliseconds(recv->get_priority()));
+        }));
+        threads.push_back(std::move(thread));
+    }
+
+    for (auto ci = reqs.begin(); ci != reqs.end(); ci++) {
+        auto req = ci->second;
+        std::shared_ptr<std::thread> thread(new std::thread([&req]() {
+            event_loop::request(*req.get(), std::chrono::milliseconds(req->get_priority()));
         }));
         threads.push_back(std::move(thread));
     }

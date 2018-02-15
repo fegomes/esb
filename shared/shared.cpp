@@ -7,6 +7,7 @@
 #include <mutex>
 
 #include <boost/interprocess/ipc/message_queue.hpp>
+#include <boost/interprocess/sync/scoped_lock.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 
@@ -34,23 +35,14 @@ namespace comm {
         
         void init() override {
             message_queue::remove(_name.c_str());
-            _mq.reset(new message_queue(open_or_create, _name.c_str(), _count, _size));
-
-            char output[10000];
-            unsigned int len;
-            unsigned int priority;
-
-            _mq->receive(output, 10000, len, priority);
-
-            if (_mq->get_max_msg_size() < _size) {
-                _mq.reset(new message_queue(create_only, _name.c_str(), _count, _size));
-            }
+            _mq.reset(new message_queue(create_only, _name.c_str(), _count, _size));
         }
 
         void send(boost::any input) {
             if (input.empty()) {
                 return;
             }
+            
             _lock.lock();
 
             try {
@@ -68,6 +60,13 @@ namespace comm {
             }
 
             _lock.unlock();
+
+            char value[10000] = { '\0' } ;
+            size_t len;
+            size_t priority;
+            _lock.lock();
+            _mq->receive(&value, 10000, len, priority);
+            _lock.unlock();            
         }
 
         void end() override {
